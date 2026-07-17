@@ -4,10 +4,10 @@
   works with(GOG, Steam, etc.) versions, for use with LibreSplit.
     -Based on Galeforce's LiveSplit Autosplitter v0.5.1
      https://github.com/everalert/swe1r-autosplitter
-  The same autosplitter logic, converted to LUA, with some additions.
+The same autosplitter logic, converted to LUA, with some additions.
 
   Features include:
-  - Auto start on file open, or (experimentaly) on race start
+  - Auto start on file open, or (semi-funcionaly) on "Race Start"
   - Reset on file selection screen 
   - Auto split on crossing finish line based on race placement
       - option to toggle regular or 100% race win conditions
@@ -46,7 +46,7 @@ process("SWEP1RCR.EXE")
 
 local sets = {
 --____________________________________________________________________________
---------------------------- AUTO SPLITTER SETTINGS---------------------------
+--------------------------- AUTOSPLITTER SETTINGS-----------------------------
 --____________________________________________________________________________
 -- Choose Run Format -->| None | Any%-Am/Semi Circuit | 100% |  NewGame+ |
    preset = 1, --    -->| [0]  |         [1]          | [2]  |    [3]    |
@@ -70,7 +70,7 @@ local sets = {
 ------------------------------------------------------------------------------
 -- View Extra Info In Terminal (when LibreSplit is run through the terminal).
    termInfo = { view = false, -- Toggles the view of the following extra info.
---  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  -- 
+--  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
                  totalRIGT = true, -- Total race IGT
                    curRIGT = false, -- Current race IGT
                  overHeats = true, -- Counts overheats over whole run
