@@ -48,27 +48,27 @@ local sets = {
 --____________________________________________________________________________
 -------------------------- AUTO SPLITTER SETTINGS ----------------------------
 --____________________________________________________________________________
--- Choose Run Catagory-->| None | Any%-Am/Semi Circuit | 100% |  NewGame+ |
-   preset = 1, --     -->| [0]  |         [1]          | [2]  |    [3]    |
---_______________________|______|______________________|______|___________|___
+-- CHOOSE RUN CATAGORY --> None | Any%-Am/Semi Circuit | 100% |  NewGame+ |
+   preset = 1,         --> [0]  |         [1]          | [2]  |    [3]    |
+--______________________________|______________________|______|___________|___
 ----------------------------------------------------------|  PRESET = SETS
--- Timing Method -   In race GT - RT No Loads - Real Time | [1,2,3] = [1](LRT)
-   timeMethod = 1, -- [0](IGT)  -   [1](LRT)  - [2+](RTA) |      
+-- TIMING METHOD  -->In race GT | RT No Loads | Real Time | [1,2,3] = [1](LRT)
+   timeMethod = 1,--> [0](IGT)  |   [1](LRT)  | [2+](RTA) |      
 ----------------------------------------------------------|-------------------
--- Requires 1st place, or if [false] requires 4th place,  |     [2] = [true]
+-- REQUIRES 1ST PLACE, or if [false] requires 4th place,  |     [2] = [true]
    req1st = false, --  and 3rd on SMRSMR/BB/BEC           |   [1,3] = [false] 
 ----------------------------------------------------------|-------------------
--- (semi-functional) Timer triggers at "Start Race",      |     [3] = [true]
-   trigSR = false, -- instead of file select.             |   [1,2] = [false] 
+-- TIMER TRIGGERS AT "Start Race", instead of file select.|     [3] = [true]
+   trigSR = false, -- (semi-functional)                   |   [1,2] = [false] 
 -- Must move directly from "Track Select" > "Start Race"  |
 ----------------------------------------------------------|-------------------
--- Enable reset trigger - triggers at file selection.     |      
+-- ENABLE RESET TRIGGER - triggers at file selection.     |      
    reset = true, -- [false] for mid-run file switch.      |     [3] = [false]
 ----------------------------------------------------------\___________________
--- Real-Time No Loads removes unfocused time (tabbed out)
+-- REMOVE UNFOCUSED TIME (tabbed out) requires RT No Loads 
    noTab = false, -- Affects all presets [timeMethod = 1]
 ------------------------------------------------------------------------------
--- View Extra Info In Terminal (when LibreSplit is run through the terminal).
+-- VIEW EXTRA INFO IN TERMINAL (when LibreSplit is run through the terminal).
    termInfo = { view = false, -- Toggles the view of the following extra info.
 --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
                  totalRIGT = true, -- Total race IGT
