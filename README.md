@@ -1,7 +1,7 @@
 # STAR WARS RACER AUTOSPLITTER (for LibreSplit)
 **A script that automates LibreSplit's timer, for Star Wars Episode I Racer speedruns.**  
 Based on [Galeforce's LiveSplit Autosplitter](https://github.com/everalert/swe1r-autosplitter) v0.5.1  
-The same autosplitter logic, converted to LUA, with some additions/compatability changes.
+The same autosplitter logic, converted to Lua, with some additions/compatability changes.
 
 ### FEATURES
 * Choice to auto Start when file is opened, or "Start Race" is selected 
@@ -29,16 +29,6 @@ ___
 At the top there are script notes, followed by a small settings guide, and under that will be the "AUTOSPLITTER SETTING". 
 
 ### AUTOSPLITTER SETTINGS
-> [!caution]
-> ```lua
-> setting = "value",
-> ```
-> **When adjusting a **```setting```** it is important that you:**
-> * Only edit the **```value```**.
-> * Only replace a **```value```** with another of its type. 
-> * Make sure that any **```value```** is ended with a comma **```,```**.
->   
-> Changing or removing any other syntax (like **```setting```** names, missing any commas **```,```** etc.) will break the script.
 ```lua
 local sets = {
 --____________________________________________________________________________
@@ -74,23 +64,29 @@ local sets = {
 ------------------------------------------------------------------------------
 }
 ```
-Here is where all settings can be modified. The script settings include minimal description of each option, this should be enough to work with. If you feel comfotable go ahead and adjust the settings to your liking.
-  
-> [!note]
-> The **```preset```** variable is the only setting that requires adjustment to properly running every catagory.
-
-If you would like more information before proceeding, each setting is described in greater detail after the **ENABLING THE SCRIPT** section.
+Here is where all settings can be modified. The script settings include minimal description of each option, this should be enough to work with. For most cases the **```preset```** setting is the only setting that will need to be adjusted. If you feel comfotable go ahead and adjust the settings to your liking. If you would like more information, each setting is described in greater detail after the **ENABLING THE SCRIPT** section.
+> [!caution]
+> ```lua
+> setting = "value",
+> ```
+> **When adjusting a **```setting```** it is important that you:**
+> * Only edit the **```value```**.
+> * Only replace a **```value```** with another of its type. 
+> * Make sure that any **```value```** is ended with a comma **```,```**.
+>   
+> Changing or removing any other syntax (like **```setting```** names, missing any commas **```,```** etc.) will break the script.
   
 ## ENABLING THE SCRIPT
-Open LibreSplit, right click in the window and select "Open Auto Splitter", now Select the script and "Open" it. Ensure that "Enable Auto Splitter" is checked.  
+Open LibreSplit, right click in the window and select "Open Auto Splitter". Continue to select the script and "Open" it. Ensure that "Enable Auto Splitter" is checked.  
   
 ![Load and Enable Autosplitter in LibreSplit](https://github.com/Wuzzmi/swe1r-auto_splitter/blob/main/img/libresplit-load-enable.png)  
   
 > [!important]
-> If you have edited your script settings after it was already loaded and enabled, you will need to uncheck and recheck "Enable Auto Splitter" for the changes to take effect.
+> If you edit your script settings after the script has already been loaded and enabled, you will need to uncheck and recheck "Enable Auto Splitter" for the changes to take effect.
   
 **Now everything is all set and the autosplitter will function when you run the game!**
-___
+___  
+  
 ## FULL SETTINGS BREAKDOWN
 **CATAGORY PRESET** 
 ```lua
@@ -163,6 +159,8 @@ viewTermStats = false,
 ```
 **```viewTermStats```** toggles your enabeled stats to be viewable in the terminal. **```viewTermStats```** has no effect unless you are running LibreSplit through the terminal, so keep **```false```** if not. This is not ideal, but is currently the best option. "[LiveSplit's ASL variable viewer](https://github.com/hawkerm/LiveSplit.ASLVarViewer)" allows these stats to be viewed in [LiveSplit](https://github.com/LiveSplit/LiveSplit) (there is no LibreSplit alternative).   
   
+Each stat is set the same way as **```viewTermStats```**.  
+Like in this table:
   
 |  | Enabled | Disabled |
 |:---:|:---:|:---:|
@@ -171,8 +169,6 @@ viewTermStats = false,
 |**viewIGT =**| true | false |
 |**viewCurRaceIGT =**| true | etc... |  
   
-Displaying each stat is set just like **```viewTermStats```**.
-___
 **DISPLAYABLE STATS**
 ___
 **IGT**
