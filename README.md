@@ -1,13 +1,13 @@
 # STAR WARS RACER AUTOSPLITTER (for LibreSplit)
 **A script that automates LibreSplit's timer, for Star Wars Episode I Racer speedruns.**  
 Based on [Galeforce's LiveSplit Autosplitter](https://github.com/everalert/swe1r-autosplitter) v0.5.1  
-The same autosplitter logic, converted to LUA, with some additions/compatability changes.
+The same autosplitter logic, converted to LUA, with some additions/compatibility changes.
 
 ### FEATURES
 * Choice to auto Start when file is opened, or "Start Race" is selected 
-* Auto split at race finish, with togglable 1st place requirment
+* Auto split at race finish, with toggle for 1st place requirement
 * Option for auto reset, on return to file selection
-* Option to use run catagory presets
+* Option to use run category presets
 * Choose between IGT, LRT and RTA timing methods 
 * Ability to remove unfocused/tabbed-out time when using LRT
 * Option to view extra stats in terminal
@@ -44,7 +44,7 @@ local sets = {
 --____________________________________________________________________________
 --------------------------- AUTOSPLITTER SETTINGS ----------------------------
 --____________________________________________________________________________
--- CHOOSE RUN CATAGORY --> None | Any%-Am/Semi Circuit | 100% |  NewGame+ |
+-- CHOOSE RUN category --> None |   Any%/Amateur/Semi  | 100% | New Game+ |
    preset = 1,         --> [0]  |         [1]          | [2]  |    [3]    |
 --______________________________|______________________|______|___________|___
 ----------------------------------------------------------|  PRESET = SETS
@@ -52,7 +52,7 @@ local sets = {
    timeMethod = 1,--> [0](IGT)  |   [1](LRT)  | [2+](RTA) |      
 ----------------------------------------------------------|-------------------
 -- REQUIRES 1ST PLACE, or if [false] requires 4th place,  |     [2] = [true]
-   req1st = false, --  and 3rd on SMRSMR/BB/BEC           |   [1,3] = [false] 
+   req1st = false, --  and 3rd on SMR/BB/BEC           |   [1,3] = [false] 
 ----------------------------------------------------------|-------------------
 -- "START RACE" TIMER TRIGGER (SEMIFUNCTIONAL) - Move     |
    trigSR = false, -- from "Track Select" > "START RACE"  |   [1,2] = [false] 
@@ -74,10 +74,10 @@ local sets = {
 ------------------------------------------------------------------------------
 }
 ```
-Here is where all settings can be modified. The script settings include minimal description of each option, this should be enough to work with. If you feel comfotable go ahead and adjust the settings to your liking.
+Here is where all settings can be modified. The script settings include minimal description of each option, this should be enough to work with. If you feel comfortable go ahead and adjust the settings to your liking.
   
 > [!note]
-> The **```preset```** variable is the only setting that requires adjustment to properly running every catagory.
+> The **```preset```** variable is the only setting that requires adjustment to properly running every category.
 
 If you would like more information before proceeding, each setting is described in greater detail after the **ENABLING THE SCRIPT** section.
   
@@ -92,11 +92,11 @@ Open LibreSplit, right click in the window and select "Open Auto Splitter", now 
 **Now everything is all set and the autosplitter will function when you run the game!**
 ___
 ## FULL SETTINGS BREAKDOWN
-**CATAGORY PRESET** 
+**category PRESET** 
 ```lua
 preset = 1,
 ```
-**```preset```** is a one setting adjustment for switching run catagories. It functions as a override for a number of other settings. For this reason **```preset``` ```0```** exists, allowing full settings control for special use cases.
+**```preset```** is a one setting adjustment for switching run categories. It functions as a override for a number of other settings. For this reason **```preset``` ```0```** exists, allowing full settings control for special use cases.
 |  | None | Any% - Amateur/Semi-Pro Circuit | 100% | New Game + |
 |:---:|:---:|:---:|:---:|:---:|
 | **preset =** | 0 | 1 | 2 | 3 |  
@@ -105,7 +105,7 @@ ___
 ```lua
 timeMethod = 1,
 ```
-Use **```timeMethod```** to choose either IGT, LRT or RTA. As shown in the table below, every catagory **```preset```** overrides to LRT (**```timeMethod = 1,```**). The other timing methods are not useful for recording official runs, but are there if you find a use for them.
+Use **```timeMethod```** to choose either IGT, LRT or RTA. As shown in the table below, every category **```preset```** overrides to LRT (**```timeMethod = 1,```**). The other timing methods are not useful for recording official runs, but are there if you find a use for them.
 |  | In race Game Time (IGT) | Real Time No loads (LRT) | Real Time (RTA) |
 |:---:|:---:|:---:|:---:|
 |**timeMethod =**| 0 | 1 | 2+ |
@@ -116,7 +116,7 @@ ___
 ```lua
 req1st = false,
 ```
-**```req1st```** toggles the 1st place win condition requirment to trigger a split. The normal win condition requires 4th place, or 3rd on the last track of a circuit ( SMR/BB/BEC ) to split. **```req1st```** is usually set **```true```** for 100% runs, not of much use otherwise.
+**```req1st```** toggles the 1st place win condition requirement to trigger a split. The normal win condition requires 4th place, or 3rd on the last track of a circuit ( SMR/BB/BEC ) to split. **```req1st```** is usually set **```true```** for 100% runs, not of much use otherwise.
 |  | Require 1st | Require 4th, 3rd (on SMR/BB/BEC) |
 |:---:|:---:|:---:|
 |**req1st =**| true | false |
@@ -127,7 +127,7 @@ ___
 ```lua
 trigSR = false,
 ```
-**```trigSR```** will trigger auto start when "Start Race" is selected. Otherwise autostart continue to start at file open. **```trigSR```** is used for the New Game + catagory, which requires timing to start when selecting "Start Race" for the first track. Otherwise it's uses are limited.
+**```trigSR```** will trigger auto start when "Start Race" is selected. Otherwise auto start continue to start at file open. **```trigSR```** is used for the New Game + category, which requires timing to start when selecting "Start Race" for the first track. Otherwise it's uses are limited.
 |  | "Start Race" trigger | File open trigger |
 |:---:|:---:|:---:|
 |**trigSR =**| true | false |
@@ -140,7 +140,7 @@ ___
 ```lua
 reset = true,
 ```
-**```reset```** toggles auto reset on/off. It is very important to set **```reset = false```** for NG+ runs that require a file/mode change mid run. This will stop file/mode changes from reseting and ruining the run, which is why the NG+ **```preset```** overrides to **```reset = false```**. If your NG+ run doesn't need a file/mode change, and you would like to use **```reset```**, you will have to set **```preset = 0```** and manually set all settings. Aside from NG+ runs, **```reset```** is just personal preference.
+**```reset```** toggles auto reset on/off. It is very important to set **```reset = false```** for NG+ runs that require a file/mode change mid run. This will stop file/mode changes from resetting and ruining the run, which is why the NG+ **```preset```** overrides to **```reset = false```**. If your NG+ run doesn't need a file/mode change, and you would like to use **```reset```**, you will have to set **```preset = 0```** and manually set all settings. Aside from NG+ runs, **```reset```** is just personal preference.
 |  | Auto Reset On | Auto Reset Off |
 |:---:|:---:|:---:|
 |**reset =**| true | false |
@@ -161,7 +161,7 @@ ___
 ```lua
 viewTermStats = false,
 ```
-**```viewTermStats```** toggles your enabeled stats to be viewable in the terminal. **```viewTermStats```** has no effect unless you are running LibreSplit through the terminal, so keep **```false```** if not. This is not ideal, but is currently the best option. "[LiveSplit's ASL variable viewer](https://github.com/hawkerm/LiveSplit.ASLVarViewer)" allows these stats to be viewed in [LiveSplit](https://github.com/LiveSplit/LiveSplit) (there is no LibreSplit alternative).   
+**```viewTermStats```** toggles your enabled stats to be viewable in the terminal. **```viewTermStats```** has no effect unless you are running LibreSplit through the terminal, so keep **```false```** if not. This is not ideal, but is currently the best option. "[LiveSplit's ASL variable viewer](https://github.com/hawkerm/LiveSplit.ASLVarViewer)" allows these stats to be viewed in [LiveSplit](https://github.com/LiveSplit/LiveSplit) (there is no LibreSplit alternative).   
   
   
 |  | Enabled | Disabled |
