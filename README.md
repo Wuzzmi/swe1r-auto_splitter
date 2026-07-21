@@ -1,11 +1,7 @@
 # STAR WARS RACER AUTOSPLITTER (for LibreSplit)
 **A script that automates LibreSplit's timer, for Star Wars Episode I Racer speedruns.**  
 Based on [Galeforce's LiveSplit Autosplitter](https://github.com/everalert/swe1r-autosplitter) v0.5.1  
-<<<<<<< HEAD
-The same autosplitter logic, converted to LUA, with some additions/compatibility changes.
-=======
-The same autosplitter logic, converted to Lua, with some additions/compatability changes.
->>>>>>> refs/remotes/origin/main
+The same autosplitter logic, converted to Lua, with some additions/compatibility changes.
 
 ### FEATURES
 * Choice to auto Start when file is opened, or "Start Race" is selected 
