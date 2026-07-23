@@ -59,9 +59,9 @@ local sets = {
 ------------------------------------------------------------------------------
 -- VIEW EXTRA STATS IN TERMINAL (when LibreSplit is run through the terminal).
    viewTermStats = true, -- Toggles the view of the following extra info.
---  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
+--  --  -VIEWABLE STATS  --  --  --  --  --  --  --  --  --  --  --  --  --  -
                 viewIGT = true, -- Total race IGT
-         viewCurRaceIGT = false, -- Current race IGT
+         viewCurRaceIGT = true, -- Current race IGT
           viewOverheats = true, -- Counts overheats over whole run
              viewDeaths = true, -- Counts viewDeaths over whole run
 --____________________________________________________________________________
@@ -108,6 +108,7 @@ local vars = {
     loading = 0
 }
 
+-- Add more to vars when term stats is enabled
 if sets.viewTermStats then
     -- Terminal info variables
     vars.infoTRIGT = "0.00"
@@ -116,35 +117,29 @@ if sets.viewTermStats then
     vars.infoDC = "0"
     vars.cntOverHeat = 0
     vars.cntDeath = 0
+    vars.statsIndent = 3
+    vars.statsWidth = 24
+    -- Terminal formatting variables
+    vars.titles = { 
+        strTRIGT = "IGT", 
+        strRIGT = "Current Race IGT", 
+        strOHC = "Overheat Counter", 
+        strDC = "Death Counter"
+    }
 end
--- Used to print the title and value of a member of [viewTermStats] if enabled
-local function termDisplay(title, value, condition)
-    if condition then
-        print("____________________________\n      " ..
-                          title ..        "\n      " .. 
-                          value)
-    end
+
+function startup()
+    useGameTime = sets.timeMethod == 0 
+    refreshRate = 24 -- Starting point, will be calculated dynamically
 end
 
 local function nilGuard(value, idString)
     if value == nil then
         print( 
-        idString .. " Set to 0. Can't use nil value.\n")
+        idString .. " has been set to 0. Can't use nil value.\n")
         return 0
     end
     return value
-end
-
--- Function to format time as string (h:mm:ss.fff format)
-local function formatTime(seconds)
-    if seconds > 3600 then
-        return string.format("%d:%d:%05.2f", seconds / 3600, 
-        (seconds % 3600) / 60, seconds % 60)
-    elseif seconds > 60 then
-        return string.format("%d:%05.2f", seconds / 60, seconds % 60)
-    else
-        return string.format("%05.2f", seconds)
-    end
 end
 
 function state()
@@ -172,23 +167,41 @@ function state()
     "(5) [current.podHeat]")
 end
 
-function startup()
-    useGameTime = sets.timeMethod == 0 
-    refreshRate = 24 -- Starting point, will be calculated dynamically
+-- Prints title and value @ width(in chars) of viewable stat, if enabled
+local function termDisplay(title, value, width, condition)
+    local indent = string.rep(" ", 3)
+    local line = string.rep("_", width) 
+    if condition then
+        print(    line .. "\n" .. 
+        indent .. title .. "\n" ..
+        indent .. value)
+    end
+end
+
+-- Function to format time as string (h:mm:ss.ff)
+local function formatTime(seconds)
+    if seconds > 3600 then
+        return string.format("%d:%d:%05.2f", seconds / 3600, 
+        (seconds % 3600) / 60, seconds % 60)
+    elseif seconds > 60 then
+        return string.format("%d:%05.2f", seconds / 60, seconds % 60)
+    else
+        return string.format("%05.2f", seconds)
+    end
 end
 
 function update()
     -- View terminal info
     if sets.viewTermStats then
         print("\n")
-            termDisplay("IGT", vars.infoTRIGT,
-            sets.viewIGT) 
-            termDisplay("Current Race IGT", vars.infoRIGT,
-            sets.viewCurRaceIGT) 
-            termDisplay("Overheat Counter", vars.infoOHC,
-            sets.viewOverheats) 
-            termDisplay("Death Counter", vars.infoDC,
-            sets.viewDeaths) 
+        termDisplay(vars.titles.strTRIGT, vars.infoTRIGT, vars.statsWidth, 
+        sets.viewIGT) 
+        termDisplay(vars.titles.strRIGT, vars.infoRIGT, vars.statsWidth, 
+        sets.viewCurRaceIGT) 
+        termDisplay(vars.titles.strOHC, vars.infoOHC, vars.statsWidth, 
+        sets.viewOverheats) 
+        termDisplay(vars.titles.strDC, vars.infoDC, vars.statsWidth, 
+        sets.viewDeaths) 
         print("\n")
     end
     -- Dynamically update refresh rate based on frame time
