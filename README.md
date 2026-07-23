@@ -57,8 +57,8 @@ local sets = {
    noTab = false, -- Affects all presets [timeMethod = 1]
 ------------------------------------------------------------------------------
 -- VIEW EXTRA STATS IN TERMINAL (when LibreSplit is run through the terminal).
-   viewTermStats = true, -- Toggles the view of the following extra info.
---  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
+   viewTermStats = false, -- Toggles the view of the following extra info.
+--  --  -VIEWABLE STATS  --  --  --  --  --  --  --  --  --  --  --  --  --  -
                 viewIGT = true, -- Total race IGT
          viewCurRaceIGT = false, -- Current race IGT
           viewOverheats = true, -- Counts overheats over whole run
@@ -207,5 +207,10 @@ viewDeaths = true,
 **```viewDeaths```** shows how man times you have died during your run.
 ___
 
-## License
+## POSSIBLE FUTURE IMPROVMENTS
+* Determine a proper memory address for triggering timer on "START RACE" selection (currently relying on sceneID, not ideal)
+* Add option for each individual race time (idealy with individual lap times) to be printed in terminal at the end of a run
+* Possible addition of more terminal stats (the source [ASL script](https://github.com/everalert/swe1r-autosplitter/blob/master/swe1r.asl) had a number of semi completed viewable stats being added)
+  
+## LICENSE
 This repo is unlicensed.
